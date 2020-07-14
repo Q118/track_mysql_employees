@@ -1,0 +1,26 @@
+{
+  "name": "track_mysql_employees",
+  "version": "1.0.0",
+  "description": "A solution for managing a company's employees using node, inquirer, and MySQL.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Q118/track_mysql_employees.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Q118/track_mysql_employees/issues"
+  },
+  "homepage": "https://github.com/Q118/track_mysql_employees#readme",
+  "dependencies": {
+    "console.table": "^0.10.0",
+    "inquirer": "^7.3.2",
+    "mysql": "^2.18.1"
+  }
+}
