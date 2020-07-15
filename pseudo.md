@@ -5,7 +5,7 @@
   - initialize npm (`npm init`) /
   - install dependencies (inquirer, mysql, console.table) /
 
--build database in workbench then add to vscode 
+-build database in workbench then add to vscode  /
 - Establish a connection to the database
 - Prompt user to choose action (start menu)
   Should provide following commands:
@@ -33,3 +33,6 @@
 - Add new Employee
 - View employee
 - Update employee role
+
+
+
