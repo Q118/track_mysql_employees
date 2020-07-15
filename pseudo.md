@@ -6,10 +6,11 @@
   - install dependencies (inquirer, mysql, console.table) /
 
 -build database in workbench then add to vscode  /
-- Establish a connection to the database
-- Prompt user to choose action (start menu)
+- Establish a connection to the database /
+- Prompt user to choose action (start menu) 
   Should provide following commands:
 ```
+Minimum ones first
   - Add new department
   - View Departments
   - Add new role
@@ -17,6 +18,8 @@
   - Add new Employee
   - View employee
   - Update employee role
+
+if time, add more like in gif
 ```
 - Add new department
   - Create addDepartment function
@@ -36,3 +39,11 @@
 
 
 
+//first make start prompt
+what would you like to do
+  
+  based on choice...
+
+
+  functions
+  all in list above getting called corresponding to answer provided
