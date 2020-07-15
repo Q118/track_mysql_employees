@@ -64,8 +64,33 @@ function start() {
 }
 
 function addNewDept() {
-  console.log("test!");
-};
+  // prompt for info about department being added
+  return inquirer
+    .prompt([
+      {
+        name: "deptName",
+        type: "input",
+        message: "What is the name of the department?",
+      },
+    ])
+    .then((answer) => {
+      // when finished prompting, insert a new item into the db with that info
+      return connection.query(
+        "INSERT INTO department SET ?",
+        {
+          name: answer.deptName,
+        },
+        (err) => {
+          if (err) {
+            throw err;
+          }
+          console.log("Your department has been added successfully!");
+          // re-prompt the user for if they want to bid or post
+          return start();
+        }
+      );
+    });
+}
   
 
 // viewDept();

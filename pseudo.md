@@ -22,8 +22,8 @@ Minimum ones first
 if time, add more like in gif
 ```
 - Add new department
-  - Create addDepartment function
-  - prompt user for a department name
+  - Create addDepartment function /
+  - prompt user for a department name /
   - create query string to create department
   - run connection.query
   - if there is an error
