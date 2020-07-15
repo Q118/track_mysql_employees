@@ -47,3 +47,12 @@ what would you like to do
 
   functions
   all in list above getting called corresponding to answer provided
+
+function names();
+addNewDept
+viewDept
+addRole
+viewRole
+addEmployee
+viewEmployee
+updateEmployeeRole

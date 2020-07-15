@@ -16,7 +16,7 @@ connection.connect((err) => {
 		throw err;
 	}
 	console.log("connected as id " + connection.threadId);
-	// return start();
+	return start();
 });
 
 //start menu
@@ -37,28 +37,40 @@ function start() {
 			],
 		})
 		.then((answer) => {
-			// based on their answer, call appropriate functions
-			let answer = answer.startApp;
-			if (answer === "Add new department") {
-				return addNewDept();
-			} else if (answer === "View Departments") {
-				return viewDept();
-			} else if (answer === "Add new role") {
-				return addRole();
-			} else if (answer === "View Roles") {
-				return viewRole();
-			} else if (answer === "Add new Employee") {
-				return addEmployee();
-			} else if (answer === "View employee(s)") {
-				return viewEmployee();
-			} else if (answer === "Update employee role(s)") {
-				return updateEmployeeRole();
-			} else {
-				connection.end();
-			}
-		})
-		.catch((error) => {
-			console.log(error);
+		// 	// based on their answer, call appropriate functions
+		 	let answer1 = answer.startApp;
+		 	if (answer1 === "Add new department") {
+		 		return addNewDept();
+		// 	} else if (answer1 === "View Departments") {
+		// 		return viewDept();
+		// 	} else if (answer1 === "Add new role") {
+		// 		return addRole();
+		// 	} else if (answer1 === "View Roles") {
+		// 		return viewRole();
+		// 	} else if (answer1 === "Add new Employee") {
+		// 		return addEmployee();
+		// 	} else if (answer1 === "View employee(s)") {
+		// 		return viewEmployee();
+		// 	} else if (answer1 === "Update employee role(s)") {
+		// 		return updateEmployeeRole();
+		 	} else {
+		 		connection.end();
+		 	}
+		 })
+		 .catch((error) => {
+		 	console.log(error);
 			process.exit(1);
 		});
 }
+
+function addNewDept() {
+  console.log("test!");
+};
+  
+
+// viewDept();
+// addRole();
+// viewRole();
+// addEmployee();
+// viewEmployee();
+// updateEmployeeRole();
