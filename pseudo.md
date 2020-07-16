@@ -57,10 +57,10 @@ if time, add more like in gif
     -back to start menu
 
 - Add new Employee
-  -create add employee function
-  -prompt user for employe first name
-  -prompt user for employe last name
-  -prompt what is the employees role id
+  -create add employee function /
+  -prompt user for employe first name /
+  -prompt user for employe last name /
+  -prompt what is the employees role id /
   -promt user for the employyees mangr id (if applicable)
       -option for n/a
    - run connection.query 
