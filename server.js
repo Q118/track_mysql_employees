@@ -47,15 +47,17 @@ function start() {
 				return viewDept();
 				// 	}  if (answer1 === "Add new role") {
 				// 		return addRole();
-				 	}  if (answer1 === "View Roles") {
-				 		return viewRole();
+			}
+			if (answer1 === "View Roles") {
+				return viewRole();
 				// 	}  if (answer1 === "Add new Employee") {
 				// 		return addEmployee();
 			}
 			if (answer1 === "View employee(s)") {
 				return viewEmployee();
-				// 	}  if (answer1 === "Update employee role(s)") {
-				// 		return updateEmployeeRole();
+			}
+			if (answer1 === "Update employee role(s)") {
+				return updateEmployeeRole();
 			} else {
 				connection.end();
 			}
@@ -159,45 +161,71 @@ function viewEmployee() {
 	});
 }
 
-// function updateEmployeeRole() {
-// 	//get all the employees
-
-// 	const sqlString = `
-// 	students.id AS ID screenshot
-// 	eeeee`;
-// 	//then prompt user to pick a student
-// 	connection.query(sqlString, (error, results) => {
-// 		if (error) {
-// 			throw error;
-// 		}
-// 		console.table(results);
-// 		inquirer
-// 			.prompt({
-// 				name: "employeeID",
-// 				type: "input",
-// 				message: "Enter emplowee id to changer",
-// 			})
-// 			.then((studentChoiceAnswers) => {
-// 				//so make name = each row and value = the id
-// 				connection.query("SELECT * FROM classes;", (error, results) => {
-// 					console.table(results);
-// 					inqurier.prompt({
-// 						name: "classID",
-// 						type: "input",
-// 						message: "Enter emplowee id to changer",
-// 					}).then((classChoiceANswers) => {
-// 						cinst student ID= stendentchoiceansers.studentID
-// 						connection.query("UPDATE students SET classID = ? WHERE =?;", [studentID, classID])
-// 					});
-// 				});
-// 			});
-// 	});
-
-// 	//get all the classes
-// 	//then prompt user to pick the new class
-// 	//the up-date the employee
-// 	//then back to main
-// }
-
-// \;
-//////
+function updateEmployeeRole() {
+	// get all the employees
+	const sqlString = `SELECT
+	  CONCAT(employee.first_name, " ", employee.last_name) AS Name,
+	  role.title AS Role,
+	  employee.id AS EmployeeID
+	FROM employee
+	INNER JOIN role ON employee.role_id = role.id`;
+	connection.query(sqlString, (error, results) => {
+		// display the results a formatted table
+		if (error) {
+			throw error;
+		}
+		console.log(
+			`\n~~~~~~~~~~~~~~~~~~~~~~~~\nAll Employees:\n~~~~~~~~~~~~~~~~~~~~~~~~`
+		);
+		console.table(results);
+		inquirer
+			.prompt({
+				name: "employeeId",
+				type: "input",
+				message: "Enter the id for the employee you wish to update.",
+			})
+			.then((userChoiceAnswers) => {
+				connection.query(
+					`SELECT
+				role.title AS Title,
+				role.salary AS Salary,
+				role.ID AS RoleID
+				FROM role
+				INNER JOIN department ON role.department_id = department.id;`,
+					(error, results) => {
+						if (error) {
+							throw error;
+						}
+						console.log(
+							`\n~~~~~~~~~~~~~~~~~~~~~~~~\nAll Roles:\n~~~~~~~~~~~~~~~~~~~~~~~~`
+						);
+						console.table(results);
+						inquirer
+							.prompt({
+								name: "roleId",
+								type: "input",
+								message:
+									"Enter the role id you wish to assign to the employee.",
+							})
+							.then((roleChoiceAnswers) => {
+								const employeeId = userChoiceAnswers.employeeId;
+								const roleId = roleChoiceAnswers.roleId;
+								connection.query(
+									"UPDATE employee SET id = ? WHERE role_id = ?;",
+									[employeeId, roleId],
+									(error, results) => {
+										if (error) {
+											throw error;
+										}
+										console.log(`~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~`);
+										console.log("Successfully updated employee with id " + employeeId + " to the role id of " + roleId + "!");
+										console.log(`~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~`);
+										start();
+									}
+								);
+							});
+					}
+				);
+			});
+	});
+}
