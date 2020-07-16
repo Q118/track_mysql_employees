@@ -32,7 +32,7 @@ A solution for managing a company's employees using node, inquirer, and MySQL. U
 
 View the walk-through video that demonstrates the functiopnality of this command-line application: 
 
-* [Demo Video](#)
+* [Demo Video](https://drive.google.com/file/d/1Iru-Px6gEk6ULrZUJ_PIkW9bPw4xNsJa/view)
 
 
 ## 🛡Badge📛
