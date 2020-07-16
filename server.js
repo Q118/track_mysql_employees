@@ -49,15 +49,16 @@ function start() {
 			],
 		})
 		.then((answer) => {
-			// 	// based on their answer, call appropriate functions
+		// based on their answer, call appropriate functions
 			let answer1 = answer.startApp;
 			if (answer1 === "Add new department") {
 				return addNewDept();
 			}
 			if (answer1 === "View Departments") {
 				return viewDept();
-				// 	}  if (answer1 === "Add new role") {
-				// 		return addRole();
+			}
+			if (answer1 === "Add new role") {
+				return addRole();
 			}
 			if (answer1 === "View Roles") {
 				return viewRole();
@@ -132,7 +133,57 @@ function viewDept() {
 	});
 }
 
-// addRole();
+
+function addRole() {
+	// prompt for info about role being added
+	return inquirer
+		.prompt([
+			{
+				name: "roleTitle",
+				type: "input",
+				message: "What is the title of the role?",
+			},
+			{
+				name: "roleSalary",
+				type: "input",
+				message: "What is the yearly salary for the role?",
+			},
+			{
+				name: "departmentId",
+				type: "input",
+				message: "What is the roles department id?",
+			},
+		])
+		.then((answer) => {
+			// when finished prompting, insert a new item into the db with that info
+			return connection.query(
+				"INSERT INTO role SET ?",
+				{
+					title: answer.roleTitle,
+					salary: answer.roleSalary,
+					department_id: answer.departmentId,
+				},
+				(err) => {
+					if (err) {
+						throw err;
+					}
+					console.log(
+						`\n_,.-'~'-.,__,.-'~'-.,__,.-'~'-.,__,.-'~'-.,__,.-'~'-.,__,.-'~'-.,__,.-'~'-.,__,.-'~'-.,__,.-'~'-.,__,.-'~'-.,_`
+					);
+					console.log("Your Role has been added successfully!");
+					console.log(
+						`_,.-'~'-.,__,.-'~'-.,__,.-'~'-.,__,.-'~'-.,__,.-'~'-.,__,.-'~'-.,__,.-'~'-.,__,.-'~'-.,__,.-'~'-.,__,.-'~'-.,_ \n`
+					);
+					return start();
+				}
+			);
+		});
+}
+
+
+
+
+
 
 function viewRole() {
 	const sqlString = `SELECT
