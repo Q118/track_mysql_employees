@@ -4,6 +4,8 @@ const mysql = require("mysql");
 const inquirer = require("inquirer");
 const cTable = require("console.table");
 
+const figlet = require("figlet");
+
 const connection = mysql.createConnection({
 	host: "localhost",
 	user: "root",
@@ -11,11 +13,21 @@ const connection = mysql.createConnection({
 	database: "employee_db",
 });
 
+figlet("EMPLOYEE TRACKER", function (err, data) {
+	if (err) {
+		console.log("Something went wrong...");
+		console.dir(err);
+		return;
+	}
+	console.log(data);
+});
+
 connection.connect((err) => {
 	if (err) {
 		throw err;
 	}
-	console.log("connected as id " + connection.threadId);
+	console.log("connected as id " + connection.threadId + `\n `);
+
 	return start();
 });
 
@@ -217,9 +229,19 @@ function updateEmployeeRole() {
 										if (error) {
 											throw error;
 										}
-										console.log(`_,.-'~'-.,__,.-'~'-.,__,.-'~'-.,__,.-'~'-.,__,.-'~'-.,__,.-'~'-.,__,.-'~'-.,__,.-'~'-.,__,.-'~'-.,__,.-'~'-.,_`);
-										console.log("Successfully updated employee with id " + employeeId + " to the role id of " + roleId + "!");
-										console.log(`_,.-'~'-.,__,.-'~'-.,__,.-'~'-.,__,.-'~'-.,__,.-'~'-.,__,.-'~'-.,__,.-'~'-.,__,.-'~'-.,__,.-'~'-.,__,.-'~'-.,_`);
+										console.log(
+											`_,.-'~'-.,__,.-'~'-.,__,.-'~'-.,__,.-'~'-.,__,.-'~'-.,__,.-'~'-.,__,.-'~'-.,__,.-'~'-.,__,.-'~'-.,__,.-'~'-.,_`
+										);
+										console.log(
+											"Successfully updated employee with id " +
+												employeeId +
+												" to the role id of " +
+												roleId +
+												"!"
+										);
+										console.log(
+											`_,.-'~'-.,__,.-'~'-.,__,.-'~'-.,__,.-'~'-.,__,.-'~'-.,__,.-'~'-.,__,.-'~'-.,__,.-'~'-.,__,.-'~'-.,__,.-'~'-.,_`
+										);
 										start();
 									}
 								);
