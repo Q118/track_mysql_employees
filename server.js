@@ -106,7 +106,7 @@ function viewDept() {
 			throw error;
 		}
 		console.log(
-			`\n~~~~~~~~~~~~~~~~~~~~~~~~\nAll Departments:\n~~~~~~~~~~~~~~~~~~~~~~~~`
+			`\n.:*~*:._.:*~*:._.:*~*:._.:*~*:.\n	All Departments\n.:*~*:._.:*~*:._.:*~*:._.:*~*:.`
 		);
 		console.table(results);
 		//time to use console.table
@@ -129,7 +129,7 @@ function viewRole() {
 			throw error;
 		}
 		console.log(
-			`\n~~~~~~~~~~~~~~~~~~~~~~~~\nAll Roles:\n~~~~~~~~~~~~~~~~~~~~~~~~`
+			`\n.:*~*:._.:*~*:._.:*~*:._.:*~*:.\n	All Roles\n.:*~*:._.:*~*:._.:*~*:._.:*~*:.`
 		);
 		console.table(results);
 		//time to use console.table
@@ -153,7 +153,7 @@ function viewEmployee() {
 			throw error;
 		}
 		console.log(
-			`\n~~~~~~~~~~~~~~~~~~~~~~~~\nAll Employees:\n~~~~~~~~~~~~~~~~~~~~~~~~`
+			`\n.:*~*:._.:*~*:._.:*~*:._.:*~*:.\n	All Employees\n.:*~*:._.:*~*:._.:*~*:._.:*~*:.`
 		);
 		console.table(results);
 		//time to use console.table
@@ -175,7 +175,7 @@ function updateEmployeeRole() {
 			throw error;
 		}
 		console.log(
-			`\n~~~~~~~~~~~~~~~~~~~~~~~~\nAll Employees:\n~~~~~~~~~~~~~~~~~~~~~~~~`
+			`\n.:*~*:._.:*~*:._.:*~*:._.:*~*:.\n	All Employees\n.:*~*:._.:*~*:._.:*~*:._.:*~*:.`
 		);
 		console.table(results);
 		inquirer
@@ -197,7 +197,7 @@ function updateEmployeeRole() {
 							throw error;
 						}
 						console.log(
-							`\n~~~~~~~~~~~~~~~~~~~~~~~~\nAll Roles:\n~~~~~~~~~~~~~~~~~~~~~~~~`
+							`\n.:*~*:._.:*~*:._.:*~*:._.:*~*:.\n	All Roles\n.:*~*:._.:*~*:._.:*~*:._.:*~*:.`
 						);
 						console.table(results);
 						inquirer
@@ -217,9 +217,9 @@ function updateEmployeeRole() {
 										if (error) {
 											throw error;
 										}
-										console.log(`~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~`);
+										console.log(`_,.-'~'-.,__,.-'~'-.,__,.-'~'-.,__,.-'~'-.,__,.-'~'-.,__,.-'~'-.,__,.-'~'-.,__,.-'~'-.,__,.-'~'-.,__,.-'~'-.,_`);
 										console.log("Successfully updated employee with id " + employeeId + " to the role id of " + roleId + "!");
-										console.log(`~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~`);
+										console.log(`_,.-'~'-.,__,.-'~'-.,__,.-'~'-.,__,.-'~'-.,__,.-'~'-.,__,.-'~'-.,__,.-'~'-.,__,.-'~'-.,__,.-'~'-.,__,.-'~'-.,_`);
 										start();
 									}
 								);
