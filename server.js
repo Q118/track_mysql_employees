@@ -42,16 +42,18 @@ function start() {
 			let answer1 = answer.startApp;
 			if (answer1 === "Add new department") {
 				return addNewDept();
-				 	}  if (answer1 === "View Departments") {
-				 		return viewDept();
+			}
+			if (answer1 === "View Departments") {
+				return viewDept();
 				// 	}  if (answer1 === "Add new role") {
 				// 		return addRole();
-				// 	}  if (answer1 === "View Roles") {
-				// 		return viewRole();
+				 	}  if (answer1 === "View Roles") {
+				 		return viewRole();
 				// 	}  if (answer1 === "Add new Employee") {
 				// 		return addEmployee();
-				 	}  if (answer1 === "View employee(s)") {
-				 		return viewEmployee();
+			}
+			if (answer1 === "View employee(s)") {
+				return viewEmployee();
 				// 	}  if (answer1 === "Update employee role(s)") {
 				// 		return updateEmployeeRole();
 			} else {
@@ -95,31 +97,46 @@ function addNewDept() {
 
 function viewDept() {
 	const sqlString = `
-	SELECT * FROM employee_db.department;`; 
+	SELECT * FROM employee_db.department;`;
 	//no values below bc no ?s
 	connection.query(sqlString, (error, results) => {
 		if (error) {
- 			throw error;
+			throw error;
 		}
-		console.log(`\n~~~~~~~~~~~~~~~~~~~~~~~~\nAll Departments:\n~~~~~~~~~~~~~~~~~~~~~~~~`);
+		console.log(
+			`\n~~~~~~~~~~~~~~~~~~~~~~~~\nAll Departments:\n~~~~~~~~~~~~~~~~~~~~~~~~`
+		);
 		console.table(results);
- 		//time to use console.table
-	return start();
+		//time to use console.table
+		return start();
 	});
-
-
-
-
 }
 
-
-
-
 // addRole();
-// viewRole();
+
+function viewRole() {
+	const sqlString = `SELECT
+	role.title AS Title,
+	role.salary AS Salary,
+	department.name AS Department
+	FROM role
+	INNER JOIN department ON role.department_id = department.id;`;
+	//no values below bc no ?s
+	connection.query(sqlString, (error, results) => {
+		if (error) {
+			throw error;
+		}
+		console.log(
+			`\n~~~~~~~~~~~~~~~~~~~~~~~~\nAll Roles:\n~~~~~~~~~~~~~~~~~~~~~~~~`
+		);
+		console.table(results);
+		//time to use console.table
+		return start();
+	});
+}
 // addEmployee();
 
- function viewEmployee() {
+function viewEmployee() {
 	const sqlString = `
 	SELECT
 	  CONCAT(employee.first_name, " ", employee.last_name) AS Name,
@@ -127,24 +144,26 @@ function viewDept() {
 	  department.name AS Department
 	FROM employee
 	INNER JOIN role ON employee.role_id = role.id
-	INNER JOIN department ON role.department_id = department.id;`; 
+	INNER JOIN department ON role.department_id = department.id;`;
 	//no values below bc no ?s
 	connection.query(sqlString, (error, results) => {
 		if (error) {
- 			throw error;
+			throw error;
 		}
-		console.log(`\n~~~~~~~~~~~~~~~~~~~~~~~~\nAll Employees:\n~~~~~~~~~~~~~~~~~~~~~~~~`);
+		console.log(
+			`\n~~~~~~~~~~~~~~~~~~~~~~~~\nAll Employees:\n~~~~~~~~~~~~~~~~~~~~~~~~`
+		);
 		console.table(results);
- 		//time to use console.table
-	return start();
+		//time to use console.table
+		return start();
 	});
- }
+}
 
 // function updateEmployeeRole() {
 // 	//get all the employees
 
 // 	const sqlString = `
-// 	students.id AS ID screenshot 
+// 	students.id AS ID screenshot
 // 	eeeee`;
 // 	//then prompt user to pick a student
 // 	connection.query(sqlString, (error, results) => {
