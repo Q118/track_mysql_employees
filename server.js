@@ -34,6 +34,7 @@ function start() {
 				"Add new Employee",
 				"View employee(s)",
 				"Update employee role(s)",
+				"Exit",
 			],
 		})
 		.then((answer) => {
@@ -41,8 +42,8 @@ function start() {
 			let answer1 = answer.startApp;
 			if (answer1 === "Add new department") {
 				return addNewDept();
-				// 	}  if (answer1 === "View Departments") {
-				// 		return viewDept();
+				 	}  if (answer1 === "View Departments") {
+				 		return viewDept();
 				// 	}  if (answer1 === "Add new role") {
 				// 		return addRole();
 				// 	}  if (answer1 === "View Roles") {
@@ -92,7 +93,28 @@ function addNewDept() {
 		});
 }
 
-// viewDept();
+function viewDept() {
+	const sqlString = `
+	SELECT * FROM employee_db.department;`; 
+	//no values below bc no ?s
+	connection.query(sqlString, (error, results) => {
+		if (error) {
+ 			throw error;
+		}
+		console.log(`\n~~~~~~~~~~~~~~~~~~~~~~~~\nAll Departments:\n~~~~~~~~~~~~~~~~~~~~~~~~`);
+		console.table(results);
+ 		//time to use console.table
+	return start();
+	});
+
+
+
+
+}
+
+
+
+
 // addRole();
 // viewRole();
 // addEmployee();
@@ -111,6 +133,7 @@ function addNewDept() {
 		if (error) {
  			throw error;
 		}
+		console.log(`\n~~~~~~~~~~~~~~~~~~~~~~~~\nAll Employees:\n~~~~~~~~~~~~~~~~~~~~~~~~`);
 		console.table(results);
  		//time to use console.table
 	return start();
