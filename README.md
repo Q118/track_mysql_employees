@@ -1,6 +1,6 @@
 # Track_mySQL_Employees
 
-![](https://github.com/Q118/express_notes/blob/master/Assets/screenshot.png)
+![](https://github.com/Q118/track_mysql_employees/blob/master/Assets/screenshot.png)
 
 A solution for managing a company's employees using node, inquirer, and MySQL. Using a CMS interface to provide a way for non-developers to view and interact with information stored in databases.
 
