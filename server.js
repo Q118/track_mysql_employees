@@ -41,17 +41,17 @@ function start() {
 			let answer1 = answer.startApp;
 			if (answer1 === "Add new department") {
 				return addNewDept();
-				// 	} else if (answer1 === "View Departments") {
+				// 	}  if (answer1 === "View Departments") {
 				// 		return viewDept();
-				// 	} else if (answer1 === "Add new role") {
+				// 	}  if (answer1 === "Add new role") {
 				// 		return addRole();
-				// 	} else if (answer1 === "View Roles") {
+				// 	}  if (answer1 === "View Roles") {
 				// 		return viewRole();
-				// 	} else if (answer1 === "Add new Employee") {
+				// 	}  if (answer1 === "Add new Employee") {
 				// 		return addEmployee();
-				// 	} else if (answer1 === "View employee(s)") {
-				// 		return viewEmployee();
-				// 	} else if (answer1 === "Update employee role(s)") {
+				 	}  if (answer1 === "View employee(s)") {
+				 		return viewEmployee();
+				// 	}  if (answer1 === "Update employee role(s)") {
 				// 		return updateEmployeeRole();
 			} else {
 				connection.end();
@@ -96,17 +96,26 @@ function addNewDept() {
 // addRole();
 // viewRole();
 // addEmployee();
-// function viewEmployee() {
-// 	const sqlString = `sqlquery`; //no values below bc no ?s
-// 	connection.query(sqlString, (error, results) => {
-// 		if (error) {
-// 			throw error;
-// 		}
-// 		console.table(results);
-// 		//time to use console.table
-// 		return start();
-// 	});
-// }
+
+ function viewEmployee() {
+	const sqlString = `
+	SELECT
+	  CONCAT(employee.first_name, " ", employee.last_name) AS Name,
+	  role.title AS Role,
+	  department.name AS Department
+	FROM employee
+	INNER JOIN role ON employee.role_id = role.id
+	INNER JOIN department ON role.department_id = department.id;`; 
+	//no values below bc no ?s
+	connection.query(sqlString, (error, results) => {
+		if (error) {
+ 			throw error;
+		}
+		console.table(results);
+ 		//time to use console.table
+	return start();
+	});
+ }
 
 // function updateEmployeeRole() {
 // 	//get all the employees
