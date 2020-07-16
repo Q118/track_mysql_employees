@@ -26,8 +26,7 @@ connection.connect((err) => {
 	if (err) {
 		throw err;
 	}
-	console.log("connected as id " + connection.threadId + `\n `);
-
+	console.log("connected as id " + connection.threadId + `\n`);
 	return start();
 });
 
@@ -62,8 +61,9 @@ function start() {
 			}
 			if (answer1 === "View Roles") {
 				return viewRole();
-				// 	}  if (answer1 === "Add new Employee") {
-				// 		return addEmployee();
+			}
+			if (answer1 === "Add new Employee") {
+				return addEmployee();
 			}
 			if (answer1 === "View employee(s)") {
 				return viewEmployee();
@@ -101,8 +101,14 @@ function addNewDept() {
 					if (err) {
 						throw err;
 					}
+					console.log(
+						`\n_,.-'~'-.,__,.-'~'-.,__,.-'~'-.,__,.-'~'-.,__,.-'~'-.,__,.-'~'-.,__,.-'~'-.,__,.-'~'-.,__,.-'~'-.,__,.-'~'-.,_`
+					);
 					console.log("Your department has been added successfully!");
-					// re-prompt the user for if they want to bid or post
+					console.log(
+						`_,.-'~'-.,__,.-'~'-.,__,.-'~'-.,__,.-'~'-.,__,.-'~'-.,__,.-'~'-.,__,.-'~'-.,__,.-'~'-.,__,.-'~'-.,__,.-'~'-.,_ \n`
+					);
+
 					return start();
 				}
 			);
@@ -118,7 +124,7 @@ function viewDept() {
 			throw error;
 		}
 		console.log(
-			`\n.:*~*:._.:*~*:._.:*~*:._.:*~*:.\n	All Departments\n.:*~*:._.:*~*:._.:*~*:._.:*~*:.`
+			`\n.:*~*:._.:*~*:._.:*~*:._.:*~*:.\n	All Departments\n.:*~*:._.:*~*:._.:*~*:._.:*~*:.\n`
 		);
 		console.table(results);
 		//time to use console.table
@@ -141,14 +147,65 @@ function viewRole() {
 			throw error;
 		}
 		console.log(
-			`\n.:*~*:._.:*~*:._.:*~*:._.:*~*:.\n	All Roles\n.:*~*:._.:*~*:._.:*~*:._.:*~*:.`
+			`\n.:*~*:._.:*~*:._.:*~*:._.:*~*:.\n	All Roles\n.:*~*:._.:*~*:._.:*~*:._.:*~*:.\n`
 		);
 		console.table(results);
 		//time to use console.table
 		return start();
 	});
 }
-// addEmployee();
+
+function addEmployee() {
+	// prompt for info about department being added
+	return inquirer
+		.prompt([
+			{
+				name: "employeeFirstName",
+				type: "input",
+				message: "What is the first name of the employee?",
+			},
+			{
+				name: "employeeLastName",
+				type: "input",
+				message: "What is the last name of the employee?",
+			},
+			{
+				name: "employeeRoleId",
+				type: "input",
+				message: "What is the employees role id?",
+			},
+			{
+				name: "employeeManagerId",
+				type: "input",
+				message: "What is the employees manager id?",
+			},
+		])
+		.then((answer) => {
+			// when finished prompting, insert a new item into the db with that info
+			return connection.query(
+				"INSERT INTO employee SET ?",
+				{
+					first_name: answer.employeeFirstName,
+					last_name: answer.employeeLastName,
+					role_id: answer.employeeRoleId,
+					manager_id: answer.employeeManagerId,
+				},
+				(err) => {
+					if (err) {
+						throw err;
+					}
+					console.log(
+						`\n_,.-'~'-.,__,.-'~'-.,__,.-'~'-.,__,.-'~'-.,__,.-'~'-.,__,.-'~'-.,__,.-'~'-.,__,.-'~'-.,__,.-'~'-.,__,.-'~'-.,_`
+					);
+					console.log("Your Employee has been added successfully!");
+					console.log(
+						`_,.-'~'-.,__,.-'~'-.,__,.-'~'-.,__,.-'~'-.,__,.-'~'-.,__,.-'~'-.,__,.-'~'-.,__,.-'~'-.,__,.-'~'-.,__,.-'~'-.,_ \n`
+					);
+					return start();
+				}
+			);
+		});
+}
 
 function viewEmployee() {
 	const sqlString = `
@@ -165,7 +222,7 @@ function viewEmployee() {
 			throw error;
 		}
 		console.log(
-			`\n.:*~*:._.:*~*:._.:*~*:._.:*~*:.\n	All Employees\n.:*~*:._.:*~*:._.:*~*:._.:*~*:.`
+			`\n.:*~*:._.:*~*:._.:*~*:._.:*~*:.\n	All Employees\n.:*~*:._.:*~*:._.:*~*:._.:*~*:.\n`
 		);
 		console.table(results);
 		//time to use console.table
@@ -187,7 +244,7 @@ function updateEmployeeRole() {
 			throw error;
 		}
 		console.log(
-			`\n.:*~*:._.:*~*:._.:*~*:._.:*~*:.\n	All Employees\n.:*~*:._.:*~*:._.:*~*:._.:*~*:.`
+			`\n.:*~*:._.:*~*:._.:*~*:._.:*~*:.\n	All Employees\n.:*~*:._.:*~*:._.:*~*:._.:*~*:.\n`
 		);
 		console.table(results);
 		inquirer
@@ -209,7 +266,7 @@ function updateEmployeeRole() {
 							throw error;
 						}
 						console.log(
-							`\n.:*~*:._.:*~*:._.:*~*:._.:*~*:.\n	All Roles\n.:*~*:._.:*~*:._.:*~*:._.:*~*:.`
+							`\n.:*~*:._.:*~*:._.:*~*:._.:*~*:.\n	All Roles\n.:*~*:._.:*~*:._.:*~*:._.:*~*:.\n`
 						);
 						console.table(results);
 						inquirer
@@ -230,7 +287,7 @@ function updateEmployeeRole() {
 											throw error;
 										}
 										console.log(
-											`_,.-'~'-.,__,.-'~'-.,__,.-'~'-.,__,.-'~'-.,__,.-'~'-.,__,.-'~'-.,__,.-'~'-.,__,.-'~'-.,__,.-'~'-.,__,.-'~'-.,_`
+											`\n_,.-'~'-.,__,.-'~'-.,__,.-'~'-.,__,.-'~'-.,__,.-'~'-.,__,.-'~'-.,__,.-'~'-.,__,.-'~'-.,__,.-'~'-.,__,.-'~'-.,_`
 										);
 										console.log(
 											"Successfully updated employee with id " +
@@ -240,7 +297,7 @@ function updateEmployeeRole() {
 												"!"
 										);
 										console.log(
-											`_,.-'~'-.,__,.-'~'-.,__,.-'~'-.,__,.-'~'-.,__,.-'~'-.,__,.-'~'-.,__,.-'~'-.,__,.-'~'-.,__,.-'~'-.,__,.-'~'-.,_`
+											`_,.-'~'-.,__,.-'~'-.,__,.-'~'-.,__,.-'~'-.,__,.-'~'-.,__,.-'~'-.,__,.-'~'-.,__,.-'~'-.,__,.-'~'-.,__,.-'~'-.,_\n`
 										);
 										start();
 									}

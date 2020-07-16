@@ -81,11 +81,10 @@ if time, add more like in gif
   -create update employee function
   -prompt choice of who to update
   -display list of employees already in table
-  -prompt which part to update
+  -prompt to update their role
   -display it and they choose
-  -prompt want to change another part?
-  -if yes, then go up two steps, 
-  -if no, print employee updated,
+
+  -rint employee updated,
   -back to start menu
 
 

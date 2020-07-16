@@ -101,8 +101,8 @@ FROM employee_db.department;
 
 -- schema for viewing Roles--
 SELECT
-role.title AS Title,
-role.salary AS Salary,
-department.name AS Department
+    role.title AS Title,
+    role.salary AS Salary,
+    department.name AS Department
 FROM role
-INNER JOIN department ON role.department_id = department.id;
+    INNER JOIN department ON role.department_id = department.id;
